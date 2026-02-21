@@ -100,4 +100,4 @@ def sign_and_verify(msg, privKey):
  
 sign_and_verify("Hello", privKey)
 
-# READ : https://cryptobook.nakov.com/digital-signatures/ecdsa-sign-verify-messages
+

@@ -1,0 +1,5 @@
+[profile.default]
+src = "contracts"
+test = "tests"
+script = "scripts"
+libs = ["lib", "node_modules"]
