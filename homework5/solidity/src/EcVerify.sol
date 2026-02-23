@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.30;
+pragma solidity ^0.8.13;
 
 struct ECPoint {
     uint256 x;
@@ -17,7 +17,7 @@ contract EcVerify {
         (uint256 ecSumX, uint256 ecSumY) = ecAdd(A.x, A.y, B.x, B.y);
         uint256 denInverse = modExp(den, CURVE_ORDER-2, CURVE_ORDER);
         uint256 multiplied = mulmod(num, denInverse, CURVE_ORDER);
-        (uint256 scalarX, uint256 scalarY) = ecmul(1, 2, multiplied);
+        (uint256 scalarX, uint256 scalarY) = ecMul(1, 2, multiplied);
         if (ecSumX == scalarX && ecSumY == scalarY) {
             return true;
         } 
@@ -25,7 +25,7 @@ contract EcVerify {
         return false;
     }
 
-    function modExp(uint256 base, uint256 exp, uint256 mod) internal view returns (uint256) {
+    function modExp(uint256 base, uint256 exp, uint256 mod) public view returns (uint256) {
         // 0x05 modexp precompile - https://www.evm.codes/precompiled?fork=osaka#0x05
         bytes memory payload = abi.encode(32, 32, 32, base, exp, mod);
         (bool ok, bytes memory result) = address(5).staticcall(payload);
@@ -33,7 +33,7 @@ contract EcVerify {
         return abi.decode(result, (uint256));
     }
 
-    function ecAdd(uint256 x1, uint256 y1, uint256 x2, uint256 y2) internal view returns(uint256, uint256) {
+    function ecAdd(uint256 x1, uint256 y1, uint256 x2, uint256 y2) public view returns(uint256, uint256) {
         // 0x06 ecAdd precompile - https://www.evm.codes/precompiled?fork=osaka#0x06
         bytes memory payload = abi.encode(x1, y1, x2, y2);
         (bool ok, bytes memory result) = address(6).staticcall(payload);
@@ -41,7 +41,7 @@ contract EcVerify {
         return abi.decode(result, (uint256, uint256));
     }
 
-    function ecmul(uint256 x1, uint256 y1, uint256 scalar) internal view returns(uint256, uint256) {
+    function ecMul(uint256 x1, uint256 y1, uint256 scalar) public view returns(uint256, uint256) {
         // 0x06 ecMul precompile - https://www.evm.codes/precompiled?fork=osaka#0x07
         bytes memory payload = abi.encode(x1, y1, scalar);
         (bool ok, bytes memory result) = address(7).staticcall(payload);
