@@ -1,53 +1,61 @@
 # Homework 2
 
-Magma = Closed
-Semigroup = Closed, Associative
-Monoid = Closed, Associative, Identity Element (e)
-Group = Closed, Associative , Identity Element , Inverse
-Abelian Group: Closed, Associative , Identity Element , Inverse, Commutative
+**Algebraic structures (reminder):**
 
-1. Let our set be real numbers. Show a binary operator that is not closed
-set R (real numbers)
-operator : + ---> a + b is always real
-operator : - ---> a - b ~ a + (-b) is always real
-multiplication : * ---> a * b is always real
-divison : / ---> a/b is not real if b=0
-so / (divison) is a not closed
+- **Magma:** Closed
+- **Semigroup:** Closed, Associative
+- **Monoid:** Closed, Associative, Identity element (e)
+- **Group:** Closed, Associative, Identity element, Inverse
+- **Abelian group:** Closed, Associative, Identity element, Inverse, Commutative
 
-operator : Square-root of (a+b)
-SR(a+b) is not always real 
-example : a = -10 , b = 1, SR(a+b) = SR(-10+1) = SR(-9) = 3i 
+---
 
-2. Find a binary operator that is closed but not associative for real numbers
-operator : - ---> a - b != b - a 
-- is closed but not associative
+1. **Let our set be the real numbers. Show a binary operator that is not closed.**
 
-3. What algebraic structure (group, monoid, semigroup, etc) is all even integers under addition
-set {-5, -3, -1 , 1 , 3, 5, 7}
+   Set: ℝ (real numbers).
 
-4. What algebraic structure is all odd integers under multiplication?
-{-5, -3, -1 , 1 , 3, 5, 7}
+   - +, −, × are closed (results always real).
+   - **Division (/):** a/b is not in ℝ when b = 0 ⇒ not closed.
+   - **Square root of sum:** e.g. √(a+b). For a = −10, b = 1, √(a+b) = √(−9) = 3i ∉ ℝ ⇒ not closed.
 
-5. Let our set be 3 x 2 matrices of integers under addition. What algebraic structure is this?
-Group or Abelian Group
-1) closed --> a + b for 3*2 matrix, is always integers matrix
-2) Associative --> (a + b) + c = a + (b + c), order doesn't matter 
-3) Identity element --> 3 * 2 matrix with all 0 element , A + 0(3 * 2) = A
-4) Inverse --> A + (-A) = 0 , for all integers a, there exist -a so that a + (-a) = 0
-5) commutative --> a + b = b + a
+2. **Find a binary operator that is closed but not associative on the reals.**
 
-6. Suppose our set is all rational numbers $\mathbb{Q}$ except $0$ and our binary operator is division. What algebraic structure is this?
-1) closed --> a / b is always a rational number
-2) Associative --> (a / b) / c != a / (b / c), a = 8, b = 4 , c = 2, so No
-3) Identity element --> 1 is identity element, such that a/1 = a but 1/a != a, so No
-4) Inverse --> if a != 0, a * (1/a) = 1 (may not be correct without proper identity element)
-5) commutative --> a / b != b / a 
+   **Subtraction (−):** a − b is always real (closed). But (a − b) − c ≠ a − (b − c) in general (e.g. (10−5)−2 = 3, 10−(5−2) = 7). So − is closed but not associative.
 
-This is a Magma
+3. **What algebraic structure is the set of all even integers under addition?**  
+   e.g. {…, −4, −2, 0, 2, 4, …}
 
-7. Suppose our set is 𓅔 𓆓 **𓆟**
-    1. Define a binary operator that makes it a group. You can define the binary operator’s property by constructing a table where the left two columns are the inputs and the right column is the result. Remember you need to allow that the inputs can be the same, for example (𓅔,𓅔) —> ?
-    2. Define a binary operator that makes it *not* a group (but it should be closed). Hint: if there is no identity element, then it is not a group
+   **Abelian group:** closed, associative, identity 0, inverse −a, commutative.
 
-8. What is the size of the smallest possible group? (Remember, a group is a set, so this is asking how large the set is)
-1
+4. **What algebraic structure is the set of all odd integers under multiplication?**  
+   e.g. {…, −5, −3, −1, 1, 3, 5, …}
+
+   Not closed: odd × odd = odd ✓, but e.g. identity would need to be 1, and 1 is in the set. Inverse: e.g. 1/3 is not an integer ⇒ not a group. It is a **monoid** (closed, associative, identity 1) if we consider only multiplication; no inverse for elements other than ±1.
+
+5. **Let the set be 3×2 matrices of integers under addition. What algebraic structure is this?**
+
+   **Abelian group.**
+
+   - Closed: sum of 3×2 integer matrices is 3×2 integer matrix.
+   - Associative: (A+B)+C = A+(B+C).
+   - Identity: 3×2 zero matrix.
+   - Inverse: A + (−A) = 0 (entries integers).
+   - Commutative: A + B = B + A.
+
+6. **Set = ℚ \ {0}, binary operator = division. What algebraic structure?**
+
+   - Closed: a/b ∈ ℚ when a,b ∈ ℚ, b ≠ 0.
+   - Not associative: (8/4)/2 = 1, 8/(4/2) = 4.
+   - No single identity: a/1 = a but 1/a ≠ a in general.
+   - Not commutative: a/b ≠ b/a in general.
+
+   So it is a **magma** (closed) but not a group.
+
+7. **Suppose our set is 𓅔, 𓆓, 𓆟.**
+
+   1. Define a binary operator that makes it a group (e.g. via a Cayley table with rows/columns for 𓅔, 𓆓, 𓆟; each row/column must contain each element exactly once; one element is identity).
+   2. Define a binary operator that is closed but not a group (e.g. no identity, or no inverses).
+
+8. **What is the size of the smallest possible group?**
+
+   **1.** The set {e} with e·e = e is a group (trivial group).

@@ -1,31 +1,24 @@
 # Homework 6
 
-Implement a Solidity contract (or Python code if you don’t want to use Solidity) that verifies the computation for the EC points.
+Implement a Solidity contract (or Python code if you don't want to use Solidity) that verifies the computation for the EC points.
 
 $$
-0 = -A_1B_2 +\alpha_1\beta_2 + X_1\gamma_2 + C_1\delta_2\\X_1=x_1G1 + x_2G1 + x_3G1
+0 = -A_1 B_2 + \alpha_1 \beta_2 + X_1 \gamma_2 + C_1 \delta_2
 $$
 
-Pick any (nontrivial) values to generate the points that results a balanced equation.
-
-Note that x1, x2, x3 are uint256 and the rest are G1 or G2 points.
-
-You will need to take in the following as arguments to a public function:
+with
 
 $$
-A_1, B_2, C_1, x_1,x_2,x_3
+X_1 = x_1 G_1 + x_2 G_1 + x_3 G_1
 $$
 
-Use the ethereum precompiles for addition and multiplication to compute $X$, then the precompile for pairing to compute the entire equation in one go.
+Pick any (nontrivial) values to generate the points that result in a balanced equation.
 
-All other points should be hardcoded into the contract. For example, suppose you want
+**Constraints:**
 
-$$
-\alpha_1 = 5G_1\\
-\beta_2 = 6G_2\\
-...
-$$
+- x₁, x₂, x₃ are `uint256`; the rest are G1 or G2 points.
+- The contract must take as arguments to a public function: **A₁, B₂, C₁, x₁, x₂, x₃**.
+- Use Ethereum precompiles for EC addition and scalar multiplication to compute X₁, then the pairing precompile to evaluate the equation in one go.
+- All other points (α₁, β₂, γ₂, δ₂, etc.) must be hardcoded as constants in the contract. For example, if α₁ = 5·G₁, β₂ = 6·G₂, etc., compute those values offline and write them as constants in the contract.
 
-You need to compute those values and write them as constants inside the contract.
-
-**Tip: make the pairing work with only two sets of points (2 G1 and 2 G2) first for simple examples. The order for G2 in the precompile is not what you are expecting it to be!**
+**Tip:** Get the pairing working with only two pairs (e.g. 2 G1 points and 2 G2 points) first with simple examples. The order for G2 in the precompile is not what you might expect.
